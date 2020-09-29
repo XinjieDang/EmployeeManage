@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shamcey - Metro Style Admin Template</title>
+<link rel="stylesheet" href="static/css/style.default.css" type="text/css" />
+<link rel="stylesheet" href="static/css/responsive-tables.css">
+
+<script type="text/javascript" src="static/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-migrate-1.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="static/js/modernizr.min.js"></script>
+<script type="text/javascript" src="static/js/responsive-tables.js"></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        // dynamic table
+        jQuery('#dyntable').dataTable({
+            "sPaginationType": "full_numbers",
+            "aaSortingFixed": [[0,'asc']],
+            "fnDrawCallback": function(oSettings) {
+                jQuery.uniform.update();
+            }
+        });
+        
+        jQuery('#dyntable2').dataTable( {
+            "bScrollInfinite": true,
+            "bScrollCollapse": true,
+            "sScrollY": "300px"
+        });
+        
+    });
+</script>
+<style>
+    .vh_title{
+        color: #F8F8FF;
+        font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="mainwrapper">
+    
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html" class="vh_title">企业员工资料后台管理系统</a>
+        </div>
+        <div class="headerinner">
+            <ul class="headmenu">
+                <li class="right">
+                    <div class="userloggedinfo">
+                        <img src="images/photos/thumb1.png" alt="" />
+                        <div class="userinfo">
+                            <h5>Juan Dela Cruz <small>- juan@themepixels.com</small></h5>
+                            <ul>
+                                <li><a href="editprofile.html">Edit Profile</a></li>
+                                <li><a href="">Account Settings</a></li>
+                                <li><a href="index.html">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul><!--headmenu-->
+        </div>
+    </div>
+    
+    <div class="leftpanel">
+        
+        <div class="leftmenu">        
+            <ul class="nav nav-tabs nav-stacked">
+            	<li class="nav-header">Navigation</li>
+                <li class="active"><a href="#"><span class="iconfa-laptop"></span> 欢迎！</a></li>
+              
+                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>用户管理</a>
+                	<ul>
+                    	<li><a href="table-dynamic.html">用户信息列表</a></li>
+                        <li><a href="wizards.html">新建用户</a></li>
+                        <li><a href="wizards.html">编辑用户</a></li>
+                    </ul>
+                </li>
+               
+               
+               
+               
+             
+            </ul>
+        </div><!--leftmenu-->
+        
+    </div><!-- leftpanel -->
+    
+    <div class="rightpanel">
+        
+        <ul class="breadcrumbs">
+            <li><a href="dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
+            <li><a href="table-static.html">Tables</a> <span class="separator"></span></li>
+            <li>Table Dynamic</li>
+            
+            <li class="right">
+                <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> Color Skins</a>
+                <ul class="dropdown-menu pull-right skin-color">
+                    <li><a href="default">Default</a></li>
+                    <li><a href="navyblue">Navy Blue</a></li>
+                    <li><a href="palegreen">Pale Green</a></li>
+                    <li><a href="red">Red</a></li>
+                    <li><a href="green">Green</a></li>
+                    <li><a href="brown">Brown</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="pageheader">
+            <form action="results.html" method="post" class="searchbar">
+                <input type="text" name="keyword" placeholder="To search type and hit enter..." />
+            </form>
+            <div class="pageicon"><span class="iconfa-table"></span></div>
+            <div class="pagetitle">
+                <h5>用户管理</h5>
+                <h1>用户信息列表</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+            
+                <h4 class="widgettitle">用户信息列表</h4>
+                <table id="dyntable" class="table table-bordered table-infinite">
+                    <colgroup>
+                        <col class="con0" style="align:center; width: 4%" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                          	<th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
+                            <th class="head0">ID</th>
+                            <th class="head1">用户名</th>
+                            <th class="head0">密码</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gradeX">
+                          <td class="aligncenter"><span class="center">
+                            <input type="checkbox" />
+                          </span></td>
+                            <td>1</td>
+                            <td>张三</td>
+                            <td>12345</td>
+                            <td class="centeralign"><a href="" class="deleterow"><span class="icon-trash"></span></a></td>
+                        </tr>
+                        <tr class="gradeX">
+                          <td class="aligncenter"><span class="center">
+                            <input type="checkbox" />
+                          </span></td>
+                            <td>1</td>
+                            <td>张三</td>
+                            <td>12345</td>
+                            <td class="centeralign"><a href="" class="deleterow"><span class="icon-trash"></span></a></td>
+                        </tr>
+                        <tr class="gradeX">
+                          <td class="aligncenter"><span class="center">
+                            <input type="checkbox" />
+                          </span></td>
+                            <td>1</td>
+                            <td>张三</td>
+                            <td>12345</td>
+                            <td class="centeralign"><a href="" class="deleterow"><span class="icon-trash"></span></a></td>
+                        </tr>
+                        <tr class="gradeX">
+                          <td class="aligncenter"><span class="center">
+                            <input type="checkbox" />
+                          </span></td>
+                            <td>1</td>
+                            <td>张三</td>
+                            <td>12345</td>
+                            <td class="centeralign"><a href="" class="deleterow"><span class="icon-trash"></span></a></td>
+                        </tr>
+                        <tr class="gradeX">
+                          <td class="aligncenter"><span class="center">
+                            <input type="checkbox" />
+                          </span></td>
+                            <td>1</td>
+                            <td>张三</td>
+                            <td>12345</td>
+                            <td class="centeralign"><a href="" class="deleterow"><span class="icon-trash"></span></a></td>
+                        </tr>
+      
+                    </tbody>
+                </table>
+                
+                <br /><br />
+                
+                <h4 class="widgettitle">Scroll Y Infinite</h4>
+          
+                
+                <div class="footer">
+                    <div class="footer-left">
+                        <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>
+                    </div>
+                    <div class="footer-right">
+                        <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
+                    </div>
+                </div><!--footer-->
+            
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+</body>
+</html>
