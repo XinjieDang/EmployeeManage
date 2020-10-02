@@ -35,4 +35,9 @@ public class JobServicelmpl  implements JobService {
         jobDao.deleteJob(Integer.parseInt(id));
 
     }
+
+    @Override
+    public List<Job> findByname(String jobname) {
+        return jobDao.findByname(jobname);
+    }
 }

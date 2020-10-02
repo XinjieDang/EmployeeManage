@@ -25,6 +25,8 @@ public class JobServlet extends HttpServlet {
             savaJob(request,response);
         }else if("updateJob".equals(action)){
             updateJob(request,response);
+        }else if("searchjob".equals(action)){
+            searchjob(request,response);
         }
 
     }
@@ -106,5 +108,14 @@ public class JobServlet extends HttpServlet {
         showList(request,response);
 
 
+    }
+    private void searchjob(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String job_text=request.getParameter("job_text");
+        List<Job> Job= jobService.findByname(job_text);
+        request.setAttribute("jobname_v",job_text);
+        request.setAttribute("jobs",Job);
+        //3、跳转到list.jsp
+        request.setAttribute("mainPage", "job/job_list.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

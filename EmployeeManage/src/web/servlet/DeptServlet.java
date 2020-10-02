@@ -26,6 +26,8 @@ public class DeptServlet extends HttpServlet {
         }
         else if ("updateDept".equals(action)) {
             updateDept(request, response);
+        }else if("searchDept".equals(action)){
+            searchDept(request,response);
         }
 
     }
@@ -91,6 +93,18 @@ public class DeptServlet extends HttpServlet {
         //3.将user存入request
         request.setAttribute("depts",dept);
         //4.转发到dept_edit.jsp
+    }
+    private void  searchDept(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String deptname_text=request.getParameter("dept_text");
+       List<Department> dept=departmentService.findByname(deptname_text);
+        //将Department存入request
+        request.setAttribute("deptname_v",deptname_text);
+        //3、跳转到list.jsp
+        request.setAttribute("depts",dept);
+        //3、跳转到list.jsp
+        request.setAttribute("mainPage", "dept/dept_list.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");

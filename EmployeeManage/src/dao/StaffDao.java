@@ -36,4 +36,12 @@ public interface StaffDao {
      */
     public List<Staff> more_query(Staff staff);
 
+    /**
+
+     * 统计职工人数
+     * @param
+     * @return
+     */
+    int count_staff();
+
 }

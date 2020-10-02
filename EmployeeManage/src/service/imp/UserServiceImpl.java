@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findUserByname(String username) {
         return dao.findByname(username);
     }
+
+    @Override
+    public int conunt() {
+        return dao.count();
+    }
 }

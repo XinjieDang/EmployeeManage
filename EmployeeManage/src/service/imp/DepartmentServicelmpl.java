@@ -34,4 +34,9 @@ public class DepartmentServicelmpl implements DepartmentService {
         departmentDao.deleteDept(Integer.parseInt(id));
 
     }
+
+    @Override
+    public List<Department> findByname(String depname) {
+        return departmentDao.findByname(depname);
+    }
 }

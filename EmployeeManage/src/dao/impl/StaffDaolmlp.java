@@ -61,7 +61,7 @@ public class StaffDaolmlp implements StaffDao {
 
     @Override
     public List<Staff> more_query(Staff staff) {
-        //1、给出sql 模板 2、给出参数  3、调用query查询 使用结果集处理器：BeanListHandler
+        //1、给出sql 模板 2、给出参数  3、调用query查询 使用结果集处理器：BeanPropertyRowMapper
         //1.1给出一个sql 前半句
         StringBuffer sql=new StringBuffer("select *from staff where 1=1");
         //2.1 判断条件 向sql 语句中追加 where 条件
@@ -89,5 +89,11 @@ public class StaffDaolmlp implements StaffDao {
         return staffs;
 
 
+    }
+
+    @Override
+    public int count_staff() {
+        String sql="select count(*) from staff";
+        return template.queryForObject(sql,Integer.class);
     }
 }

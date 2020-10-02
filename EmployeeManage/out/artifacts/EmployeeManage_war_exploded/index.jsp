@@ -55,7 +55,7 @@
                             <h5>${user.username} <small>- 欢迎您</small></h5>
                             <ul>
 
-                                <li><a href="">账户设置</a></li>
+                                <li><a href="Useroperate?action1=findUser&userId=${user.id}">账户设置</a></li>
                                 <li><a href="Useroperate?action1=exit">退出</a></li>
                             </ul>
                         </div>

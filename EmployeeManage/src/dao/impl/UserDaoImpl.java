@@ -73,6 +73,12 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
+    public int count() {
+        String sql="select count(*) from user";
+        return template.queryForObject(sql,Integer.class);
+    }
+
 
     @Override
     public int findTotalCount(Map<String, String[]> condition) {

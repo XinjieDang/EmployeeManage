@@ -1,6 +1,7 @@
 package dao.impl;
 import dao.DepartmentDao;
 import domain.Department;
+import domain.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import util.JDBCUtils;
@@ -39,5 +40,12 @@ public class DepartmentDaolmpl implements DepartmentDao {
     public void deleteDept(int id) {
         String sql="delete from department where dep_id=?";
         template.update(sql,id);
+    }
+
+    @Override
+    public List<Department> findByname(String depname) {
+        String sql= "select * from department where depname like \"%\"? \"%\"";
+        List<Department> dept=template.query(sql,new BeanPropertyRowMapper<Department>(Department.class),depname);
+        return dept;
     }
 }

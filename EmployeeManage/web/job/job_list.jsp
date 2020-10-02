@@ -26,13 +26,13 @@
 
 <div class="pageheader">
     <div style="float: right;">
-        <form name="searchForm" action="admin?action=searchadmin" class="searchbar" method="post"  style="padding-bottom: 0px">
+        <form name="searchForm" action="jobControl?action2=searchjob" class="searchbar" method="post"  style="padding-bottom: 0px">
             <span class="data_search">
 			<select id="searchType" name="searchType" style="width: 120px;">
-				<option value="name">管理员名称</option>
+				<option value="name">职位名称</option>
 			</select>&nbsp;
-                  <input type="text" class="span4" name="keyword" style="height: 30px;width: 210px" placeholder="输入搜索内容..." />
-                <button class="btn btn-primary" style="height: 30px;margin-bottom: 11px;">搜索</button> &nbsp;
+                  <input type="text" class="span4" name="job_text" value="${jobname_v}" style="height: 30px;width: 210px" placeholder="输入搜索内容..." />
+                <button class="btn btn-primary" style="height: 30px;margin-bottom: 11px;" onkeydown="if(event.keyCode==13) searchForm.submit()">搜索</button> &nbsp;
 		</span>
         </form>
     </div>

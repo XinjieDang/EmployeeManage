@@ -13,6 +13,7 @@ public interface UserDao {
     User findById(int id);
     void update(User user);
     List<User> findByname(String usernaem);
+    int count();
 
 
     /**

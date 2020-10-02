@@ -1,5 +1,6 @@
 package dao.impl;
 import dao.JobDao;
+import domain.Department;
 import domain.Job;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,5 +42,12 @@ public class JobDaolmpl implements JobDao {
     public void deleteJob(int id) {
         String sql="delete from job where job_id=?";
         template.update(sql,id);
+    }
+
+    @Override
+    public List<Job> findByname(String jobname) {
+        String sql= "select * from job where jobname like \"%\"? \"%\"";
+        List<Job> job=template.query(sql,new BeanPropertyRowMapper<Job>(Job.class),jobname);
+        return job;
     }
 }

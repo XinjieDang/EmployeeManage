@@ -28,10 +28,15 @@
     <div class="maincontent">
         <div class="maincontentinner">
             <div class="row-fluid">
+                <div class="span9" style="font-size:15px;font-weight: bold;padding: 5px;color: black">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">系统统计信息</li>
+                        <li><a href="#"><span class="iconsweets-admin"></span>&nbsp;${user_count}人</a></li>
+                        <li><a href="#"><span class=" iconsweets-users2"></span>&nbsp;${count_staff}人</a></li>
+                    </ul>
+                </div>
+
             </div><!--row-fluid-->
-
-
-
         </div><!--maincontentinner-->
     </div><!--maincontent-->
 

@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Department;
+import domain.User;
 
 import java.util.List;
 
@@ -10,5 +11,7 @@ public interface DepartmentDao {
     Department getinfo_ById(int id);
     void updateDept(Department dept);
     void deleteDept(int id);
+    List<Department> findByname(String usernaem);
+
 
 }

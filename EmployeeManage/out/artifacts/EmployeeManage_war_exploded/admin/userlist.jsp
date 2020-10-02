@@ -142,7 +142,7 @@
 
 
     function DelUser(userId) {
-        if(confirm("您确定要删除学生信息吗？")) {
+        if(confirm("您确定要删除管理员信息吗？")) {
             window.location="Useroperate?action1=delUser&userId="+userId;
         }
     }

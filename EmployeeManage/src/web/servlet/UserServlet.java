@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -62,6 +63,10 @@ public class UserServlet extends HttpServlet {
         //2.调用service删除
         UserService service = new UserServiceImpl();
         service.deleteUser(Id);
+        HttpSession session = request.getSession();
+        int count=service.conunt();
+        //更新管理员人数，将统计管理员信息存入session
+        session.setAttribute("user_count",count);
         //3.跳转到查询所有Servlet
         try {
             response.sendRedirect(request.getContextPath() + "/userListServlet");

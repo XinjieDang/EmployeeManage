@@ -110,4 +110,9 @@ public class StaffServicelmpl implements StaffService {
         }
         return list2;
     }
+
+    @Override
+    public int count_staff() {
+        return staffDao.count_staff();
+    }
 }

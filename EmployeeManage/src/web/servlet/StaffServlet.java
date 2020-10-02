@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -76,6 +77,10 @@ public class StaffServlet extends HttpServlet {
         //2.调用service删除
         staffService.delStaff(Id);
         //3.跳转到查询所有Servlet
+        //4、更新职工人数保存到session
+        HttpSession session = request.getSession();
+        int count_staff=staffService.count_staff();
+        session.setAttribute("count_staff",count_staff);
         request.setAttribute("del_msg","删除成功！");
         showList(request,response);
     }
