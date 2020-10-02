@@ -1,5 +1,4 @@
 package web.servlet;
-
 import domain.User;
 import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "UserServlet",urlPatterns = "/Useroperate")
@@ -25,7 +25,10 @@ public class UserServlet extends HttpServlet {
             add_User(request, response);
         } else if ("updateUser".equals(action)) {
             updateUser(request, response);
+        }else if("searchadmin".equals(action)){
+            searchadmin(request,response);
         }
+
     }
 
     private void add_User(HttpServletRequest request, HttpServletResponse response) {
@@ -100,6 +103,20 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("user",user);
         //4.转发到user_edit.jsp
     }
+    private void searchadmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取用户名字
+        String userText=request.getParameter("user_text");
+        //调用Service查询
+        List<User> user=service.findUserByname(userText);
+        //将user存入request
+        request.setAttribute("user_text",userText);
+        request.setAttribute("users",user);
+        //3、跳转到list.jsp
+        request.setAttribute("mainPage", "admin/userlist.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
+
+
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -113,6 +130,9 @@ public class UserServlet extends HttpServlet {
             findUser(request,response);
             request.setAttribute("mainPage", "admin/user_edit.jsp");
             request.getRequestDispatcher("/index.jsp").forward(request,response);
-        }
+        }else if ("exit".equals(action)) {
+                request.getSession().removeAttribute("user");
+                response.sendRedirect("login.jsp");
+            }
     }
 }

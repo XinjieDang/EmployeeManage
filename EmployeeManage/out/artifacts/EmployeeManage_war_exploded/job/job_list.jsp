@@ -26,14 +26,14 @@
 
 <div class="pageheader">
     <div style="float: right;">
-        <form class="searchbar" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
-            <form class="searchbar" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
-                <div class="form-group">
-                    <label for="exampleInputName2">姓名</label>
-                    <input type="text" name="name" value="${condition.name[0]}" class="form-control" id="exampleInputName2" >
-                </div>
-                <button type="submit" class="btn btn-default">查询</button>
-            </form>
+        <form name="searchForm" action="admin?action=searchadmin" class="searchbar" method="post"  style="padding-bottom: 0px">
+            <span class="data_search">
+			<select id="searchType" name="searchType" style="width: 120px;">
+				<option value="name">管理员名称</option>
+			</select>&nbsp;
+                  <input type="text" class="span4" name="keyword" style="height: 30px;width: 210px" placeholder="输入搜索内容..." />
+                <button class="btn btn-primary" style="height: 30px;margin-bottom: 11px;">搜索</button> &nbsp;
+		</span>
         </form>
     </div>
     <div class="pageicon"><span class="iconfa-table"></span></div>
@@ -46,7 +46,7 @@
 <div class="maincontent">
     <div class="maincontentinner">
 
-        <h4 class="widgettitle">职位信息列表</h4>
+        <h4 class="widgettitle" style="background:#444;">职位信息列表</h4>
         <table id="dyntable" class="table table-bordered table-infinite">
             <colgroup>
                 <col class="con0" style="align:center; width: 4%" />
@@ -62,7 +62,7 @@
                 <th class="head0">ID</th>
                 <th class="head1">职位名称</th>
                 <th class="head0">职位描述</th>
-                <th>&nbsp;</th>
+                <th class="head0">&nbsp;&nbsp;操作</th>
             </tr>
             </thead>
             <tbody>
@@ -85,14 +85,6 @@
 
         <br /><br />
 
-        <div class="footer">
-            <div class="footer-left">
-                <span>&copy; 2020. Shamcey Admin Template. All Rights Reserved.</span>
-            </div>
-            <div class="footer-right">
-                <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
-            </div>
-        </div><!--footer-->
 
     </div><!--maincontentinner-->
 </div><!--maincontent-->

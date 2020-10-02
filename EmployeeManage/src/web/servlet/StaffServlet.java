@@ -24,12 +24,14 @@ public class StaffServlet extends HttpServlet {
     StaffService staffService=new StaffServicelmpl();
     JobService jobService=new JobServicelmpl();
     DepartmentService departmentService=new DepartmentServicelmpl();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String action=request.getParameter("action2");
         if("savaStaff".equals(action)){
             saveStaff(request,response);
-
+        }else if("moreSearch".equals(action)){
+            moreFind(request,response);
         }
 
     }
@@ -60,6 +62,10 @@ public class StaffServlet extends HttpServlet {
             e.printStackTrace();
         }
         //4.调用Service保存
+        String id=request.getParameter("sta_id");
+        if(id!=null){
+            staffService.updateStaff(staff);
+        }
         staffService.addStaff(staff);
         //5.跳转到dept_list.jsp
         showList(request,response);
@@ -90,18 +96,38 @@ public class StaffServlet extends HttpServlet {
     }
     private void findStaff(HttpServletRequest request, HttpServletResponse response){
         String id=request.getParameter("staffId");
-        Staff staff=staffService.findStaff(id);
-        List<Staff> staffes=staffService.get_StaffList();
+        Staff staff=staffService.fin_StaffList(id);
         //2、将查询出的list集合存入request域
-        request.setAttribute("staffs",staff);
+        request.setAttribute("stas",staff);
+        List<Department> dept=departmentService.findAll();
+        List<Job> job=jobService.findAll();
+        request.setAttribute("dept_staff",dept);
+        request.setAttribute("job_staff",job);
 
-        List<Department> dept_list=departmentService.findAll();
-        List<Job> job_list=jobService.findAll();
-//        Department dept_list=departmentService.getinfo_ById(Integer.parseInt(id));
-//        Job job_list=jobService.getinfoById(Integer.parseInt(id));
-        request.setAttribute("staffes",staffes);
-        request.setAttribute("dept_list",dept_list);
-        request.setAttribute("job_list",job_list);
+    }
+    private void moreFind(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, String[]> map = request.getParameterMap();
+        Staff staff=new Staff();
+        try {
+            BeanUtils.populate(staff, map);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        //4.调用Service保存
+        List<Staff> staffs=staffService.morefind_get_StaffList(staff);
+        //2、将查询出的list集合存入request域
+        request.setAttribute("staffs",staffs);
+        //3、跳转到list.jsp
+        request.setAttribute("mainPage", "staff/staff_list.jsp");
+        try {
+            request.getRequestDispatcher("/index.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
               String action=request.getParameter("action1");

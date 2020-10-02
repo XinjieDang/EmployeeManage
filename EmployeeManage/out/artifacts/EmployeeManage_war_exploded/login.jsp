@@ -43,28 +43,31 @@
       });
     });
   </script>
+
 </head>
-<body class="loginpage">
+<body class="loginpage" style="background: #fbeed5;">
 <div class="loginpanel">
   <div class="loginpanelinner">
-    <div class="logo animate0 bounceIn"><h3 class="bg-primary">企业员工资料管理系统</h3></div>
+    <div class="logo animate0 bounceIn"><span class="field" style="font-weight: bold;font-size: 24px;">登录到您的账户</span></div>
     <form id="login" action="${pageContext.request.contextPath}/loginServlet" method="post">
       <div class="inputwrapper login-alert">
         <div class="alert alert-error">用户名或者密码不能为空，请重新输入</div>
       </div>
       <div class="inputwrapper animate1 bounceIn">
-        <input type="text" name="username" id="username" placeholder="用户名" />
+        <input type="text" style="height: 29px;margin-bottom:20px;width: 290px; " name="username" id="username" placeholder="用户名" />
       </div>
       <div class="inputwrapper animate2 bounceIn">
-        <input type="password" name="password" id="password" placeholder="密码" />
+        <input type="password" style="height: 29px;margin-bottom:20px;width: 290px; " name="password" id="password" placeholder="密码" />
       </div>
       <div class="form-inline">
-        <label for="vcode">验证码：</label>
-        <input type="text" name="verifycode" class="form-control" id="verifycode" placeholder="请输入验证码" style="width: 120px;"/>
-        <a href="javascript:refreshCode()"><img src="${pageContext.request.contextPath }/checkCodeServlet" title="看不清点击刷新" id="vcode"/></a>
+
+
+            <input type="text" style="height: 29px;margin-bottom:20px; " name="verifycode" class="form-control" id="verifycode" placeholder="请输入验证码" style="width: 120px;"/>
+        <a href="javascript:refreshCode()"><img src="${pageContext.request.contextPath }/checkCodeServlet" style="height: 30px;padding-top: 20px;" title="看不清点击刷新" id="vcode"/></a>
+
       </div>
       <div class="inputwrapper animate3 bounceIn">
-        <button name="submit">登录</button>
+        <button class="btn btn-info alertinfo" name="submit">登录</button>
       </div>
     </form>
       <strong>${login_msg}</strong>

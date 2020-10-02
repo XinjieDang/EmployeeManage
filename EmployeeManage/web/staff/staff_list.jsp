@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ryan
-  Date: 2020/9/20
-  Time: 23:19
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <ul class="breadcrumbs">
@@ -26,13 +20,23 @@
 
 <div class="pageheader">
     <div style="float: right;">
-        <strong>${del_msg}</strong>
-        <form class="searchbar" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
-            <div class="form-group">
-                <label for="exampleInputName2">姓名</label>
-                <input type="text" name="name" value="${condition.name[0]}" class="form-control" id="exampleInputName2" >
-            </div>
-            <button type="submit" class="btn btn-default">查询</button>
+
+        <form name="searchForm" action="staffControl?action2=moreSearch" class="searchbar" method="post"  style="padding-bottom: 0px">
+  <span class="field">
+   <span style="font-weight:bold;margin-left: 5px;">姓名：</span>
+      <input type="text" class="input-small input-spinner" name="staname" style="height: 30px;width: 210px" placeholder="输入搜索内容..." />
+    <span style="font-weight:bold;margin-left: 5px;">学历：</span>
+      <select name="education" id="education" class="uniformselect">
+                                    <option value="">选择学历</option>
+                                    <option value="博士">博士</option>
+                                    <option value="硕士">硕士</option>
+                                    <option value="本科">本科</option>
+                                    <option value="专科">专科</option>
+      </select>
+    <span style="font-weight:bold;margin-left: 5px;">籍贯：</span>
+      <input type="text" class="input-small input-spinner" name="adress" style="height: 30px;width: 210px;" placeholder="输入搜索内容..." />
+            <button class="btn btn-primary" onkeydown="if(event.keyCode==13) searchForm.submit()" style="height: 30px;margin-bottom: 11px;">搜索</button> &nbsp;
+  </span>
         </form>
     </div>
     <div class="pageicon"><span class="iconfa-table"></span></div>
@@ -45,7 +49,7 @@
 <div class="maincontent">
     <div class="maincontentinner">
 
-        <h4 class="widgettitle">职工信息列表</h4>
+        <h4 class="widgettitle" style="background:#444;">职工信息列表</h4>
         <table id="dyntable" class="table table-bordered table-infinite">
             <colgroup>
                 <col class="con0" style="align:center; width: 4%" />
@@ -69,7 +73,7 @@
                 <th class="head0">籍贯</th>
                 <th class="head0">电话号码</th>
                 <th class="head0">入职日期</th>
-                <th>&nbsp;</th>
+                <th class="head0">&nbsp;&nbsp;操作</th>
             </tr>
             </thead>
             <tbody>
@@ -105,14 +109,6 @@
 
         <br /><br />
 
-        <div class="footer">
-            <div class="footer-left">
-                <span>&copy; 2020. Shamcey Admin Template. All Rights Reserved.</span>
-            </div>
-            <div class="footer-right">
-                <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
-            </div>
-        </div><!--footer-->
 
     </div><!--maincontentinner-->
 </div><!--maincontent-->

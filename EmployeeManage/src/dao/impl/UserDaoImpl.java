@@ -67,6 +67,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List<User> findByname(String username) {
+        String sql= "select * from user where username like \"%\"? \"%\"";
+        List<User> user=template.query(sql,new BeanPropertyRowMapper<User>(User.class),username);
+        return user;
+    }
+
+
+    @Override
     public int findTotalCount(Map<String, String[]> condition) {
         return 0;
     }

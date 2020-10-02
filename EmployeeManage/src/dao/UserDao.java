@@ -12,6 +12,8 @@ public interface UserDao {
     void delete(int id);
     User findById(int id);
     void update(User user);
+    List<User> findByname(String usernaem);
+
 
     /**
      * 查询总记录数
@@ -19,4 +21,6 @@ public interface UserDao {
      * @param condition
      */
     int findTotalCount(Map<String, String[]> condition);
+
+
 }

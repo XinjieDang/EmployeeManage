@@ -25,4 +25,15 @@ public interface StaffDao {
      */
    // public List<Staff> findgetID
 
+
+
+
+    /**
+
+     * 多条件组合查询
+     * @param staff
+     * @return
+     */
+    public List<Staff> more_query(Staff staff);
+
 }

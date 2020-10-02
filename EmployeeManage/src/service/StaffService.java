@@ -50,7 +50,7 @@ public interface StaffService {
      */
 
     public List<Staff> get_StaffList();
-    public void fin_StaffList(String id);
+    public Staff fin_StaffList(String id);
 
     /**
      * 删除职工
@@ -59,5 +59,24 @@ public interface StaffService {
      */
     public void delStaff(String sta_id);
     public Staff findStaff(String id);
+
+    /**
+     * 多条件查询职工信息
+     *
+     * @param staff
+     */
+   public List<Staff> more_query(Staff staff);
+
+
+
+
+    /**
+     * 多条件查询职工信息获取到相应的部门和职位
+     *
+     * @param
+     */
+   public List<Staff> morefind_get_StaffList(Staff staff);
+
+
 }
 

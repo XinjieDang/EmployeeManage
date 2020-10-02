@@ -28,9 +28,7 @@
 </ul>
 
 <div class="pageheader">
-    <form action="../results.html" method="post" class="searchbar">
-        <input type="text" name="keyword" placeholder="To search type and hit enter..." />
-    </form>
+
     <div class="pageicon"><span class="iconfa-pencil"></span></div>
     <div class="pagetitle">
         <h5>新增职工信息</h5>
@@ -129,13 +127,15 @@
 
                     <p>
                         <label><font color="red">*</font>学历</label>
-                        <span class="field"><select name="education" id="education" class="uniformselect">
+                        <span class="field">
+                            <select name="education" id="education" class="uniformselect">
                                     <option value="">选择学历</option>
                                     <option value="博士">博士</option>
                                     <option value="硕士">硕士</option>
                                     <option value="本科">本科</option>
                                     <option value="专科">专科</option>
-                                </select></span>
+                                </select>
+                        </span>
                     </p>
 
 
@@ -165,14 +165,6 @@
 
         <!-- END OF TABBED WIZARD -->
 
-        <div class="footer">
-            <div class="footer-left">
-                <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>
-            </div>
-            <div class="footer-right">
-                <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
-            </div>
-        </div><!--footer-->
 
 
     </div><!--maincontentinner-->
@@ -201,7 +193,7 @@
             }
 
             //验证年龄
-            if ($(this).is("#age")) {
+            if ($(this).is("#ages")) {
                 var ageVal =$.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
 
                 var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;//验证是否输入特殊符号

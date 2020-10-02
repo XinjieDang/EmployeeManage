@@ -25,9 +25,7 @@
 </ul>
 
 <div class="pageheader">
-    <form action="../results.html" method="post" class="searchbar">
-        <input type="text" name="keyword" placeholder="To search type and hit enter..." />
-    </form>
+
     <div class="pageicon"><span class="iconfa-pencil"></span></div>
     <div class="pagetitle">
         <h5>Forms</h5>
@@ -69,14 +67,6 @@
 
         <!-- END OF TABBED WIZARD -->
 
-        <div class="footer">
-            <div class="footer-left">
-                <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>
-            </div>
-            <div class="footer-right">
-                <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
-            </div>
-        </div><!--footer-->
 
 
     </div><!--maincontentinner-->
