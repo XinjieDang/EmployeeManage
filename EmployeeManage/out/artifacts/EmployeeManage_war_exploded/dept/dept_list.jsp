@@ -1,6 +1,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("ul li:eq(2)").addClass("active");
+    });
+</script>
+
 <ul class="breadcrumbs">
     <li><a href="dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
     <li><a href="table-static.html">Tables</a> <span class="separator"></span></li>

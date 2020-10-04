@@ -49,13 +49,13 @@
                     <!--  隐藏域 提交id-->
                     <input type="hidden" name="id" value="${user.id}">
                     <p>
-                        <label>管理员名称：</label>
-                        <span class="field"><input type="text" name="username" value="${user.username}" id="username" class="input-xxlarge" /></span>
+                        <label>登录名：</label>
+                        <span class="field"><input type="text" name="loginname" value="${user.loginname}" id="username" class="input-xxlarge" /></span>
                     </p>
 
                     <p>
-                        <label>密码：</label>
-                        <span class="field"><input type="password" name="password" value="${user.password}" id="lastname2" class="input-xxlarge" /></span>
+                        <label>管理员名称：</label>
+                        <span class="field"><input type="text" name="username" value="${user.username}" id="lastname2" class="input-xxlarge" /></span>
                     </p>
 
                     <p class="stdformbutton">

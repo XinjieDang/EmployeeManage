@@ -1,5 +1,6 @@
 package web.servlet;
 import domain.User;
+import domain.Staff;
 import service.StaffService;
 import service.UserService;
 import service.imp.StaffServicelmpl;
@@ -20,12 +21,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         request.setCharacterEncoding("utf-8");
-
         //2.获取数据
         //2.1获取用户填写验证码
         String verifycode = request.getParameter("verifycode");
-        String username=request.getParameter("username");
-
+        String role=request.getParameter("role");
         //3.验证码校验
         HttpSession session = request.getSession();
         String checkcode_server = (String) session.getAttribute("CHECKCODE_SERVER");
@@ -36,10 +35,15 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("login_msg","验证码错误！");
             //跳转登录页面
             request.getRequestDispatcher("/login.jsp").forward(request,response);
-
             return;
         }
-
+        if("1".equals(role)){
+            adminlogin(request,response);
+        }else {
+            stafflogin(request,response);
+        }
+    }
+    protected void adminlogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String[]> map = request.getParameterMap();
         //4.封装User对象
         User user = new User();
@@ -52,6 +56,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         //5.调用Service查询
+        HttpSession session = request.getSession();
         UserService service = new UserServiceImpl();
         User loginUser = service.login(user);
         //6.判断是否登录成功
@@ -81,6 +86,38 @@ public class LoginServlet extends HttpServlet {
 
         }
 
+    }
+    protected void stafflogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Map<String, String[]> map = request.getParameterMap();
+        //4.封装User对象
+        Staff staff = new Staff();
+        try {
+            BeanUtils.populate(staff,map);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        //5.调用Service查询
+        HttpSession session = request.getSession();
+        StaffService staffService=new StaffServicelmpl();
+        Staff loginStaff = staffService.login(staff);
+        //6.判断是否登录成功
+        if(loginStaff != null){
+            //登录成功
+            System.out.println("Login successful...");
+            //将用户存入session
+            session.setAttribute("staff",loginStaff);
+            //跳转页面
+            response.sendRedirect(request.getContextPath()+"/index_staff.jsp");
+        }else{
+            //登录失败
+            //提示信息
+            request.setAttribute("login_msg","用户名或密码错误！");
+            //跳转登录页面
+            request.getRequestDispatcher("/login.jsp").forward(request,response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

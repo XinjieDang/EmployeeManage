@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return dao.findUserByUserNameAndPassword(user.getUsername(),user.getPassword());
+        return dao.findUserByUserNameAndPassword(user.getLoginname(),user.getPassword());
     }
 
     @Override
@@ -48,5 +48,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int conunt() {
         return dao.count();
+    }
+
+    @Override
+    public void updatePwd(User user) {
+        dao.updatePwd(user);
     }
 }

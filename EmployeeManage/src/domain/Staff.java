@@ -1,15 +1,29 @@
 package domain;
 
 public class Staff {
+
     private  int sta_id;
+    private String loginname;
+    private String password;
     private int job_id;
     private int dep_id;
     private Job job;
+    private Department dept;
+    private String staname;
+    private int sex;
+    private int age;
+    private  String IDcard;
+    private  String education;
+    private  String adress;
+    private  String tel;
+    private  String cre_date;
 
     @Override
     public String toString() {
         return "Staff{" +
                 "sta_id=" + sta_id +
+                ", loginname='" + loginname + '\'' +
+                ", password='" + password + '\'' +
                 ", job_id=" + job_id +
                 ", dep_id=" + dep_id +
                 ", job=" + job +
@@ -25,15 +39,24 @@ public class Staff {
                 '}';
     }
 
-    private Department dept;
-    private String staname;
-    private int sex;
-    private int age;
-    private  String IDcard;
-    private  String education;
-    private  String adress;
-    private  String tel;
-    private  String cre_date;
+
+
+    public String getLoginname() {
+        return loginname;
+    }
+
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public int getSex() {
         return sex;
@@ -42,8 +65,6 @@ public class Staff {
     public void setSex(int sex) {
         this.sex = sex;
     }
-
-
 
     public int getSta_id() {
         return sta_id;

@@ -1,5 +1,7 @@
 package dao;
 import domain.Staff;
+import domain.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ public interface StaffDao {
     void delete(int id);
     Staff findById(int id);
     void update(Staff staff);
+    Staff login(String login_id, String login_pwd);
+    void updatePwd(String pwd,String id);
 
     /**
      * 查询总记录数

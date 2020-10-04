@@ -59,4 +59,11 @@ public interface UserService {
 
     int conunt();
 
+
+    /**
+     * 根据用户更改密码
+     * @param user
+     */
+    public void updatePwd(User user);
+
 }

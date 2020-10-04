@@ -50,9 +50,17 @@
         <div class="widgetbox box-inverse">
             <h4 class="widgettitle">Form Bordered</h4>
             <div class="widgetcontent nopadding">
-                <form class="stdform stdform2" method="post" action="staffControl?action2=savaStaff">
+                <form class="stdform stdform2" method="post" action="staffControl?action2=savaStaff&flag=1">
                     <!--  隐藏域 提交id-->
                     <input type="hidden" name="sta_id" value="${stas.sta_id}">
+                    <p>
+                        <label><font color="red">*</font>职工登录账号：</label>
+                        <span class="field"><input type="text" name="loginname" value="${stas.loginname}" id="loginname" class="input-xxlarge" /></span>
+                    </p>
+                    <p>
+                        <label><font color="red">*</font>职工登录密码：</label>
+                        <span class="field"><input type="text" name="password" value="${stas.password}" id="password" class="input-xxlarge" /></span>
+                    </p>
                     <p>
                         <label><font color="red">*</font>职工姓名：</label>
                         <span class="field"><input type="text" name="staname" value="${stas.staname}" id="username" class="input-xxlarge" /></span>

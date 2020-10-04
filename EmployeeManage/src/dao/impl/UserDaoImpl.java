@@ -23,10 +23,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     //用户登录
-    public User findUserByUserNameAndPassword(String username, String password) {
+    public User findUserByUserNameAndPassword(String admname, String password) {
         try {
-            String sql="select * from user where username=? and password= ?";
-            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+            String sql="select * from user where loginname=? and password= ?";
+            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), admname, password);
             return user;
 
         }catch (Exception e){
@@ -39,9 +39,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) {
         //1.定义sql
-        String sql = "insert into user values(null,?,?)";
+        String sql = "insert into user values(null,?,?,?)";
         //2.执行sql
-        template.update(sql, user.getUsername(),user.getPassword());
+        template.update(sql,user.getLoginname(),user.getUsername(),user.getPassword());
     }
 
     @Override
@@ -61,8 +61,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void update(User user) {
         //定义sql
-        String sql = "update user set username = ?,password = ?  where id = ?";
-        template.update(sql,user.getUsername(),user.getPassword(),user.getId());
+        String sql = "update user set loginname = ?, username = ? where id = ?";
+        template.update(sql,user.getLoginname(),user.getUsername(),user.getId());
 
     }
 
@@ -77,6 +77,12 @@ public class UserDaoImpl implements UserDao {
     public int count() {
         String sql="select count(*) from user";
         return template.queryForObject(sql,Integer.class);
+    }
+
+    @Override
+    public void updatePwd(User user) {
+        String sql = "update user set password = ?  where id = ?";
+        template.update(sql,user.getPassword(),user.getId());
     }
 
 

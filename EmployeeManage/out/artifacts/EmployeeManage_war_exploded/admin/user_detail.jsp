@@ -9,7 +9,7 @@
 <ul class="breadcrumbs">
     <li><a href="../dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
     <li><a href="../forms.html">Forms</a> <span class="separator"></span></li>
-    <li>修改用户信息</li>
+    <li>查看个人信息</li>
 
     <li class="right">
         <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> Color Skins</a>
@@ -29,7 +29,7 @@
     <div class="pageicon"><span class="iconfa-pencil"></span></div>
     <div class="pagetitle">
         <h5>Forms</h5>
-        <h1>修改用户信息</h1>
+        <h1>查看个人信息</h1>
     </div>
 </div><!--pageheader-->
 
@@ -50,12 +50,17 @@
                     <input type="hidden" name="id" value="${user.id}">
                     <p>
                         <label>登录名：</label>
-                        <span class="field"><input type="text" name="loginname" value="${user.loginname}" id="username" class="input-xxlarge" /></span>
+                        <span class="field"><input type="text" name="loginname" value="${user.loginname}"  readonly="readonly"  id="username" class="input-xxlarge" /></span>
                     </p>
 
                     <p>
                         <label>管理员名称：</label>
-                        <span class="field"><input type="text" name="username" value="${user.username}" id="lastname2" class="input-xxlarge" /></span>
+                        <span class="field"><input type="text" name="username" value="${user.username}"  readonly="readonly"  id="lastname2" class="input-xxlarge" /></span>
+                    </p>
+
+                    <p>
+                        <label>角色：</label>
+                        <span class="field"><input type="text" name="username" value="超级管理员"  readonly="readonly"  id="lastname3" class="input-xxlarge" /></span>
                     </p>
 
                     <p class="stdformbutton">

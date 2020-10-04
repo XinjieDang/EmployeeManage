@@ -8,6 +8,7 @@ import dao.impl.StaffDaolmlp;
 import domain.Department;
 import domain.Job;
 import domain.Staff;
+import domain.User;
 import service.StaffService;
 
 import java.util.ArrayList;
@@ -21,12 +22,6 @@ public class StaffServicelmpl implements StaffService {
     public List<Staff> findAll() {
         return staffDao.findAll();
     }
-
-    @Override
-    public Staff login(Staff staff) {
-        return null;
-    }
-
     @Override
     public void addStaff(Staff staff) {
         staffDao.add(staff);
@@ -114,5 +109,15 @@ public class StaffServicelmpl implements StaffService {
     @Override
     public int count_staff() {
         return staffDao.count_staff();
+    }
+
+    @Override
+    public void updatePwd(String pwd,String id) {
+        staffDao.updatePwd(pwd,id);
+    }
+
+    @Override
+    public Staff login(Staff staff) {
+        return staffDao.login(staff.getLoginname(),staff.getPassword());
     }
 }

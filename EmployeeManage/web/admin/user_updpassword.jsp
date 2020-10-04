@@ -1,15 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ryan
-  Date: 2020/9/22
-  Time: 19:40
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<%--<script type="text/javascript" src="static/js/jquery-2.1.0.min.js"></script>--%>
 <ul class="breadcrumbs">
     <li><a href="../dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
     <li><a href="../forms.html">Forms</a> <span class="separator"></span></li>
-    <li>修改用户信息</li>
+    <li>用户更改密码</li>
 
     <li class="right">
         <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> Color Skins</a>
@@ -29,7 +25,7 @@
     <div class="pageicon"><span class="iconfa-pencil"></span></div>
     <div class="pagetitle">
         <h5>Forms</h5>
-        <h1>修改用户信息</h1>
+        <h1>修改密码</h1>
     </div>
 </div><!--pageheader-->
 
@@ -45,19 +41,21 @@
         <div class="widgetbox box-inverse">
             <h4 class="widgettitle">Form Bordered</h4>
             <div class="widgetcontent nopadding">
-                <form class="stdform stdform2" method="post" action="Useroperate?action2=updateUser">
+                <form class="stdform stdform2" method="post" action="Useroperate?action2=updatepwd">
                     <!--  隐藏域 提交id-->
                     <input type="hidden" name="id" value="${user.id}">
                     <p>
-                        <label>登录名：</label>
-                        <span class="field"><input type="text" name="loginname" value="${user.loginname}" id="username" class="input-xxlarge" /></span>
-                    </p>
-
-                    <p>
                         <label>管理员名称：</label>
-                        <span class="field"><input type="text" name="username" value="${user.username}" id="lastname2" class="input-xxlarge" /></span>
+                        <span class="field"><input type="text" name="username" value="${user.username}" id="username" class="form-control bt" /></span>
                     </p>
-
+                    <p>
+                        <label>新密码：</label>
+                        <span class="field"> <input type="password" class="form-control bt" name="password" id="pwd" placeholder="请设置登录密码"></span>
+                    </p>
+                    <p>
+                        <label>确认新密码：</label>
+                        <span class="field">    <input type="password" class="form-control bt" name="pwd" id="pwd1" placeholder="请再次填写密码" onkeyup="validate()"><span id="tishi"></span></span>
+                    </p>
                     <p class="stdformbutton">
                         <button class="btn btn-primary" type="submit">确定</button>
                     </p>
@@ -71,6 +69,25 @@
 
     </div><!--maincontentinner-->
 </div><!--maincontent-->
+<script >
+    //密码校验
+    $("button").attr("disabled","disabled");
+    function validate() {
+        var pwd = $("#pwd").val();
+        var pwd1 = $("#pwd1").val();
+        <!-- 对比两次输入的密码 -->
+        if(pwd == pwd1)
+        {
+            $("#tishi").html("两次密码相同");
+            $("#tishi").css("color","green");
+            $("#xiugai").removeAttr("disabled");
+            $("button").removeAttr("disabled");
+        }
+        else {
+            $("#tishi").html("两次密码不相同");
+            $("#tishi").css("color","red")
+            $("button").attr("disabled","disabled");
+        }
+    }
 
-
-
+</script>

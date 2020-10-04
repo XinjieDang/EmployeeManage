@@ -2,7 +2,34 @@ package domain;
 public class User {
     private int id;
     private String username;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", loginname='" + loginname + '\'' +
+                '}';
+    }
+
     private String password;
+    private String loginname;
+
+
+
+    public String getLoginname() {
+        return loginname;
+    }
+
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
+
+
+
+
+
 
     public int getId() {
         return id;
@@ -28,12 +55,4 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

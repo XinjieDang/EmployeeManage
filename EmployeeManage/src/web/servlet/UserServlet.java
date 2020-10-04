@@ -28,6 +28,8 @@ public class UserServlet extends HttpServlet {
             updateUser(request, response);
         }else if("searchadmin".equals(action)){
             searchadmin(request,response);
+        }else if("updatepwd".equals(action)){
+            updatePwd(request,response);
         }
 
     }
@@ -122,7 +124,27 @@ public class UserServlet extends HttpServlet {
 
 
     }
-
+    private void updatePwd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //2.获取map
+        Map<String, String[]> map = request.getParameterMap();
+        //3.封装对象
+        User user = new User();
+        try {
+            BeanUtils.populate(user, map);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        //4.调用Service修改
+        service.updatePwd(user);
+        //5.跳转到查询所有Servlet
+        try {
+            response.sendRedirect(request.getContextPath() + "/userListServlet");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action1");
@@ -133,11 +155,22 @@ public class UserServlet extends HttpServlet {
             delUser(request, response);
         } else if ("findUser".equals(action)) {
             findUser(request,response);
-            request.setAttribute("mainPage", "admin/user_edit.jsp");
+            String detail=request.getParameter("detail");
+            if(detail!=null){
+                request.setAttribute("mainPage", "admin/user_detail.jsp");
+            }
+            else {
+                request.setAttribute("mainPage", "admin/user_updpassword.jsp");
+            }
             request.getRequestDispatcher("/index.jsp").forward(request,response);
         }else if ("exit".equals(action)) {
                 request.getSession().removeAttribute("user");
                 response.sendRedirect("login.jsp");
-            }
+        }else if("findUser_upd".equals(action)){
+            findUser(request,response);
+            request.setAttribute("mainPage", "admin/user_edit.jsp");
+            request.getRequestDispatcher("/index.jsp").forward(request,response);
+
+        }
     }
 }

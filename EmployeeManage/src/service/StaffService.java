@@ -76,9 +76,9 @@ public interface StaffService {
      * @param
      */
    public List<Staff> morefind_get_StaffList(Staff staff);
-
-
    public int count_staff();
+   void updatePwd(String pwd,String id);
+
 
 
 }

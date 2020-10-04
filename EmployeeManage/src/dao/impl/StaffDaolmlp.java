@@ -26,9 +26,9 @@ public class StaffDaolmlp implements StaffDao {
 
     @Override
     public void add(Staff staff) {
-        //姓名、性别、年龄、部门、职位、身份证、学历、籍贯、联系电话、入职日期
-        String sql = "insert into staff values(null,?,?,?,?,?,?,?,?,?,?)";
-        template.update(sql,staff.getStaname(),staff.getSex(),staff.getAge(),staff.getDep_id(),staff.getJob_id(), staff.getIDcard(),
+        //登录id、登录密码、姓名、性别、年龄、部门、职位、身份证、学历、籍贯、联系电话、入职日期
+        String sql = "insert into staff values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
+        template.update(sql,staff.getLoginname(),staff.getPassword(),staff.getStaname(),staff.getSex(),staff.getAge(),staff.getDep_id(),staff.getJob_id(), staff.getIDcard(),
                 staff.getEducation(),staff.getAdress(),staff.getTel(),staff.getCre_date());
 
     }
@@ -49,9 +49,28 @@ public class StaffDaolmlp implements StaffDao {
     @Override
     public void update(Staff staff) {
         //定义sql
-        String sql = "update staff set staname = ?,sex = ?, age=? ,dep_id=?,job_id=?,IDcard=?,education=?,adress=?,tel=?,cre_date=? where id = ?";
-        template.update(sql,staff.getStaname(),staff.getSex(),staff.getAge(),staff.getDep_id(),staff.getJob_id(),staff.getIDcard(),staff.getEducation(),staff.getAdress(),staff.getTel(),staff.getCre_date(),staff.getSta_id());
+        String sql = "update staff set loginname = ?,password = ?,staname = ?,sex = ?, age=? ,dep_id=?,job_id=?,IDcard=?,education=?,adress=?,tel=?,cre_date=? where sta_id = ?";
+        template.update(sql,staff.getLoginname(),staff.getPassword(),staff.getStaname(),staff.getSex(),staff.getAge(),staff.getDep_id(),staff.getJob_id(),staff.getIDcard(),staff.getEducation(),staff.getAdress(),staff.getTel(),staff.getCre_date(),staff.getSta_id());
 
+    }
+
+    @Override
+    public Staff login(String login_id, String login_pwd) {
+        try {
+            String sql="select * from staff where loginname=? and password= ?";
+            Staff staff = template.queryForObject(sql, new BeanPropertyRowMapper<Staff>(Staff.class), login_id, login_pwd);
+            return staff;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void updatePwd(String pwd,String id) {
+        String sql = "update staff set password = ?  where sta_id = ?";
+        template.update(sql,pwd,Integer.parseInt(id));
     }
 
     @Override

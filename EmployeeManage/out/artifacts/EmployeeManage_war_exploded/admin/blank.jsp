@@ -1,5 +1,11 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("ul li:eq(0)").addClass("active");
+    });
+</script>
+
     <ul class="breadcrumbs">
         <li><a href="#"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
         <li>Dashboard</li>

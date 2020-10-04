@@ -7,6 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("ul li:eq(1)").addClass("active");
+    });
+</script>
+
     <ul class="breadcrumbs">
         <li><a href="dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
         <li><a href="table-static.html">Tables</a> <span class="separator"></span></li>
@@ -58,8 +64,9 @@
                 <tr>
                     <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
                     <th class="head0">ID</th>
+                    <th class="head1">登录名</th>
                     <th class="head1">用户名</th>
-                    <th class="head0">密码</th>
+<%--                    <th class="head0">密码</th>--%>
                     <th class="head0">&nbsp;&nbsp;操作</th>
 
                 </tr>
@@ -71,10 +78,11 @@
                             <input type="checkbox" />
                           </span></td>
                     <td>${user.id}</td>
+                    <td>${user.loginname}</td>
                     <td>${user.username}</td>
-                    <td>${user.password}</td>
+<%--                    <td>${user.password}</td>--%>
                     <td class="centeralign">
-                        &nbsp;<a href="Useroperate?action1=findUser&userId=${user.id}" class="updatarow"><span class="icon-pencil"></span></a>&nbsp;
+                        &nbsp;<a href="Useroperate?action1=findUser_upd&userId=${user.id}" class="updatarow"><span class="icon-pencil"></span></a>&nbsp;
                         <a href="javascript:;" onclick="DelUser(${user.id})" class="del1eterow"><span class="icon-trash"></span></a>
                     </td>
                 </tr>

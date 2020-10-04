@@ -52,7 +52,7 @@ public class StaffServlet extends HttpServlet {
         }
     }
 
-    private void saveStaff(HttpServletRequest request, HttpServletResponse response){
+    private void saveStaff(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String[]> map = request.getParameterMap();
         Staff staff=new Staff();
         try {
@@ -64,12 +64,24 @@ public class StaffServlet extends HttpServlet {
         }
         //4.调用Service保存
         String id=request.getParameter("sta_id");
-        if(id!=null){
+        String flag=request.getParameter("flag");
+        String password=request.getParameter("password");
+        if("2".equals(flag)){
+            staffService.updatePwd(password,id);
+//            request.setAttribute("mainPage", "staff/staff_detail.jsp");
+            request.getRequestDispatcher("/index_staff.jsp").forward(request, response);
+        }else if("1".equals(flag)){
             staffService.updateStaff(staff);
+            //5.跳转到dept_list.jsp
+            showList(request,response);
         }
-        staffService.addStaff(staff);
-        //5.跳转到dept_list.jsp
-        showList(request,response);
+        else {
+            staffService.addStaff(staff);
+            //5.跳转到dept_list.jsp
+            showList(request,response);
+        }
+
+
 
     }
     private void delStaff(HttpServletRequest request, HttpServletResponse response){
@@ -149,9 +161,24 @@ public class StaffServlet extends HttpServlet {
                   delStaff(request,response);
               }else if("findStaff".equals(action)){
                   findStaff(request,response);
-                  request.setAttribute("mainPage", "staff/staff_edit.jsp");
-                  request.getRequestDispatcher("/index.jsp").forward(request, response);
-              }
+                  String detail=request.getParameter("detail");
+                  String pwd=request.getParameter("pwd");
+                  if(detail!=null){
+                      request.setAttribute("mainPage", "staff/staff_detail.jsp");
+                      request.getRequestDispatcher("/index_staff.jsp").forward(request, response);
+                  }else if(pwd!=null){
+                      request.setAttribute("mainPage", "staff/staff_uppwd.jsp");
+                      request.getRequestDispatcher("/index_staff.jsp").forward(request, response);
+                  }
+                  else {
+                      request.setAttribute("mainPage", "staff/staff_edit.jsp");
+                      request.getRequestDispatcher("/index.jsp").forward(request, response);
+                  }
 
+
+              }else if ("exit".equals(action)) {
+                  request.getSession().removeAttribute("staff");
+                  response.sendRedirect("login.jsp");
+              }
     }
 }

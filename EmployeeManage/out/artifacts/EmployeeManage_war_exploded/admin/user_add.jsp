@@ -47,6 +47,10 @@
             <div class="widgetcontent nopadding">
                 <form class="stdform stdform2" method="post" action="Useroperate?action2=savaUser">
                     <p>
+                        <label><font color="red">*</font>登录名：</label>
+                        <span class="field"><input type="text" name="loginname" id="loginname" class="input-xxlarge" /></span>
+                    </p>
+                    <p>
                         <label><font color="red">*</font>管理员名称：</label>
                         <span class="field"><input type="text" name="username" id="username" class="input-xxlarge" /></span>
                     </p>

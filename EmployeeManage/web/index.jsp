@@ -19,6 +19,7 @@
     <script type="text/javascript" src="static/js/flot/jquery.flot.resize.min.js"></script>
     <script type="text/javascript" src="static/js/responsive-tables.js"></script>
     <script type="text/javascript" src="static/js/custom.js"></script>
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
     <style>
         .vh_title{
@@ -54,8 +55,8 @@
                         <div class="userinfo">
                             <h5>${user.username} <small>- 欢迎您</small></h5>
                             <ul>
-
-                                <li><a href="Useroperate?action1=findUser&userId=${user.id}">账户设置</a></li>
+                                <li><a href="Useroperate?action1=findUser&detail=1&userId=${user.id}">个人信息</a></li>
+                                <li><a href="Useroperate?action1=findUser&userId=${user.id}">修改密码</a></li>
                                 <li><a href="Useroperate?action1=exit">退出</a></li>
                             </ul>
                         </div>
@@ -70,7 +71,7 @@
         <div class="leftmenu">
             <ul class="nav nav-tabs nav-stacked">
                 <li class="nav-header">Navigation</li>
-                <li class="active"><a href="index.jsp"><span class="iconfa-laptop"></span>首页</a></li>
+                <li><a href="index.jsp"><span class="iconfa-laptop"></span>首页</a></li>
                 <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>用户管理</a>
                     <ul style="display: block">
                         <li><a href="${pageContext.request.contextPath }/userListServlet">用户信息信息列表</a></li>
@@ -120,13 +121,5 @@
     </div><!--footer-->
 
 </div><!--mainwrapper-->
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        $(".leftmenu ul li").click(function(){
-            $(".leftmenu ul li").removeClass("active");
-            $(this).addClass("active");
-        });
-    });
-</script>
 </body>
 </html>

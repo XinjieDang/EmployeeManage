@@ -7,13 +7,14 @@ import domain.User;
  */
 public interface UserDao {
     public List<User> findAll();
-    User findUserByUserNameAndPassword(String username,String password);
+    User findUserByUserNameAndPassword(String admname,String password);
     void add(User user);
     void delete(int id);
     User findById(int id);
     void update(User user);
     List<User> findByname(String usernaem);
     int count();
+    void updatePwd(User user);
 
 
     /**

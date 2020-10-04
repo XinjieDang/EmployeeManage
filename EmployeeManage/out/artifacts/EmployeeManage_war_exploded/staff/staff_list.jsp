@@ -63,6 +63,7 @@
             <tr>
                 <th class="head0 nosort"><input type="checkbox" class="checkall" /></th>
                 <th class="head0">ID</th>
+                <th class="head1">职工登录ID</th>
                 <th class="head1">职工名</th>
                 <th class="head0">性别</th>
                 <th class="head0">年龄</th>
@@ -83,6 +84,7 @@
                             <input type="checkbox" />
                           </span></td>
                     <td>${staff.sta_id}</td>
+                    <td>${staff.loginname}</td>
                     <td>${staff.staname}</td>
                     <td>
                         <c:choose>
