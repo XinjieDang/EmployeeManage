@@ -38,12 +38,13 @@
         }
     </style>
 </head>
-
+<%--限制职工未登录通过地址栏访问--%>
+<jsp:include page="islogin_staff.jsp"></jsp:include>
 <body>
 
 <div class="mainwrapper">
 
-    <div class="header" style="background: 	#080808">
+    <div class="header" style="background: #67a2ce">
         <div class="logo">
             <span class="field" style="font-weight: bold;font-size: 20px;color: #EEE9E9">企业员工资料管理系统</span>
         </div>

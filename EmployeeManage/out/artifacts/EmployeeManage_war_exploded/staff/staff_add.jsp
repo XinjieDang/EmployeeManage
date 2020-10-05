@@ -1,15 +1,14 @@
 <%@ page import="domain.Job" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="domain.Department" %><%--
-  Created by IntelliJ IDEA.
-  User: Ryan
-  Date: 2020/9/22
-  Time: 19:40
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="domain.Department" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript" src="static/js/jquery-1.9.1.min.js"></script>
+<style>
+    .msg{ font-size: 13px; }
+    .onError{ color: red; }
+    .onSuccess{ color: green; }
+</style>
 <ul class="breadcrumbs">
     <li><a href="../dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
     <li><a href="../forms.html">Forms</a> <span class="separator"></span></li>
@@ -55,7 +54,11 @@
                     </p>
                     <p>
                         <label><font color="red">*</font>职工登录密码：</label>
-                        <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" /></span>
+                        <span class="field"><input type="password" name="password" id="password" class="input-xxlarge" /></span>
+                    </p>
+                    <p>
+                        <label><font color="red">*</font>确认登录密码：</label>
+                        <span class="field"><input type="password" name="password" id="pwd1" class="input-xxlarge" /></span>
                     </p>
                     <p>
                         <label><font color="red">*</font>职工姓名：</label>
@@ -179,49 +182,167 @@
 </div><!--maincontent-->
 
 <script>
-    //自定义表单验证
-    jQuery(document).ready(function(){
-        //为表单元素添加失去焦点事件
-        $("form :input").blur(function() {
-            var $parent = $(this).parent();
-            $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
-            //验证姓名
-            if ($(this).is("#staname")) {
-                var nameVal = $.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
-                var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
-                if (nameVal == "" || nameVal.length < 6 || regName.test(nameVal)) {
-                    var errorMsg = " 姓名非空，长度6位以上，不包含特殊字符！";
-                    //class='msg onError' 中间的空格是层叠样式的格式
-                    $parent.append("<span style='color: red' class='msg onError'>" + errorMsg + "</span>");
-                } else {
-                    var okMsg = " 输入正确";
-                    $parent.find(".high").remove();
-                    $parent.append("<span  style='color: green' class='msg onSuccess'>" + okMsg + "</span>");
-                }
+    //表单未有信息时按钮默认不可用
+    $("button").attr("disabled","disabled");
+    //为表单元素添加失去焦点事件
+    $("form :input").blur(function(){
+        var $parent = $(this).parent();
+        $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
+        //验证职工登录账号
+        if($(this).is("#loginname")){
+            var nameVal = $.trim(this.value); //原生js去空格方式
+            var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(nameVal == "" || nameVal.length < 6 || regName.test(nameVal)){
+                var errorMsg = " 职工登录账号名非空，长度6位以上，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
             }
-
-            //验证年龄
-            if ($(this).is("#ages")) {
-                var ageVal =$.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
-
-                var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;//验证是否输入特殊符号
-                // if(ageVal>120||ageVal<0){
-                //     var errorMsg = " 请输入0~120 的年龄";
-                //     $parent.append("<span style='color: red' class='msg onError'>" + errorMsg + "</span>");
-                // }
-
-                if (ageVal == "" || ageVal.length < 6 || regName.test(ageVal)) {
-                    var errorMsg = " 年龄非空，长度6位以上，不包含特殊字符！";
-                    //class='msg onError' 中间的空格是层叠样式的格式
-                    $parent.append("<span style='color: red' class='msg onError'>" + errorMsg + "</span>");
-                } else {
-                    var okMsg = " 输入正确";
-                    $parent.find(".high").remove();
-                    $parent.append("<span  style='color: green' class='msg onSuccess'>" + okMsg + "</span>");
-                }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
             }
+        }
 
-        })
-    })
+        //验证密码
+        if($(this).is("#password")){
+            var pwdVal = $.trim(this.value);
+            var regPwd =/[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(pwdVal == "" || pwdVal.length < 4 || regPwd.test(pwdVal)){
+                var errorMsg = " 密码非空，长度6位以上，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证两次输入的密码
+        if($(this).is("#pwd1")){
+            $("button").attr("disabled","disabled");
+            var loginname = $("#loginname").val();
+            var staname = $("#staname").val();
+            var pwd = $("#password").val();
+            var pwd1 = $("#pwd1").val();
+            <!-- 对比两次输入的密码 -->
+            if(pwd == pwd1||pwd1!=""&&loginname!=""&&staname!="")
+            {
+                var okMsg=" 两次密码相同";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $("button").removeAttr("disabled");
+            }
+            else {
+                var errorMsg = "两次密码不相同";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $("button").attr("disabled","disabled");
+            }
+        }
+        //验证职工姓名
+        if($(this).is("#staname")){
+            var usNameVal = $.trim(this.value);
+            var regusName =/[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(usNameVal == "" || usNameVal.length < 2 || usNameVal.length >5|| regusName.test(usNameVal)){
+                var errorMsg = " 用户名非空，长度2位以上，4位以下，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证年龄
+        if($(this).is("#age")){
+            var ageVal = $.trim(this.value);
+            var regusage =/[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(ageVal == "" || ageVal<18||ageVal>60 || regusage.test(ageVal)){
+                var errorMsg = " 年龄非空，区间在18~59岁，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证身份证号
+
+        if($(this).is("#IDcard")){
+            var IDcardVal = $.trim(this.value);
+            var regIDcard =/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            if(regIDcard.test(IDcardVal)==false||IDcardVal==""){
+                var errorMsg = "身份证输入错误！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证手机号
+        if($(this).is("#tel")){
+            var telVal = $.trim(this.value);
+            var regItel =/^[1][3,4,5,7,8][0-9]{9}$/;
+            if(telVal == "" ||telVal.length!=11|| regItel.test(telVal)){
+                var errorMsg = "手机号输入错误！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证籍贯
+        if($(this).is("#adress")){
+            var adressVal = $.trim(this.value);
+            var regadress =/^[\u4e00-\u9fa5a-z]+$/gi;
+            if(adressVal == ""|| regadress.test(adressVal)==false){
+                var errorMsg = "籍贯输入错误！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+
+    }).keyup(function(){
+        //triggerHandler 防止事件执行完后，浏览器自动为标签获得焦点
+        $(this).triggerHandler("blur");
+    }).focus(function(){
+        $(this).triggerHandler("blur");
+    });
+
 </script>
-

@@ -39,7 +39,7 @@
     </script>
 
 </head>
-<body class="loginpage" style="background: #fbeed5;">
+<body class="loginpage" style="background:#67a2ce;">
 <div class="loginpanel">
     <div class="loginpanelinner">
         <div class="logo animate0 bounceIn"><span class="field"

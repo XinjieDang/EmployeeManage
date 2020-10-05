@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("ul li:eq(0)").addClass("active");
+        $("ul li:eq(1)").addClass("active");
     });
 </script>
 
@@ -27,7 +27,7 @@
         <div class="pageicon"><span class="iconfa-laptop"></span></div>
         <div class="pagetitle">
             <h5>All Features Summary</h5>
-            <h1>Dashboard</h1>
+            <h1>我的桌面</h1>
         </div>
     </div><!--pageheader-->
 
@@ -36,6 +36,9 @@
             <div class="row-fluid">
                 <div class="span9" style="font-size:15px;font-weight: bold;padding: 5px;color: black">
                     <ul class="nav nav-list">
+                        <li class="nav-header">公告信息</li>
+                        <li><a href="#"><span class="iconsweets-finish-flag"></span>系统暂时无公告</a></li>
+                        <li><a href="#"><span class="iconfa-envelope"></span>暂时没有您的通知消息！</a></li>
                         <li class="nav-header">系统统计信息</li>
                         <li><a href="#"><span class="iconsweets-admin"></span>&nbsp;${user_count}人</a></li>
                         <li><a href="#"><span class=" iconsweets-users2"></span>&nbsp;${count_staff}人</a></li>

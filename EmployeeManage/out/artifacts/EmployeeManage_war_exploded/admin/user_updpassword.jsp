@@ -50,11 +50,13 @@
                     </p>
                     <p>
                         <label>新密码：</label>
-                        <span class="field"> <input type="password" class="form-control bt" name="password" id="pwd" placeholder="请设置登录密码"></span>
+                        <span class="field"> <input type="password" class="form-control bt" name="password" id="pwd" onkeyup="validate1()" placeholder="请设置登录密码"><span id="tishi1"></span>
                     </p>
                     <p>
                         <label>确认新密码：</label>
-                        <span class="field">    <input type="password" class="form-control bt" name="pwd" id="pwd1" placeholder="请再次填写密码" onkeyup="validate()"><span id="tishi"></span></span>
+                        <span class="field">
+                            <input type="password" class="form-control bt" name="pwd" id="pwd1" placeholder="请再次填写密码" onkeyup="validate()"><span id="tishi"></span>
+                        </span>
                     </p>
                     <p class="stdformbutton">
                         <button class="btn btn-primary" type="submit">确定</button>
@@ -69,6 +71,7 @@
 
     </div><!--maincontentinner-->
 </div><!--maincontent-->
+
 <script >
     //密码校验
     $("button").attr("disabled","disabled");
@@ -82,12 +85,40 @@
             $("#tishi").css("color","green");
             $("#xiugai").removeAttr("disabled");
             $("button").removeAttr("disabled");
+            $('form').unbind();
         }
         else {
             $("#tishi").html("两次密码不相同");
             $("#tishi").css("color","red")
             $("button").attr("disabled","disabled");
+            $('form').bind('submit',function(){
+                return false;
+            })
         }
     }
+    function validate1() {
+        $("#pwd").blur(function (){
+            var pwd=$("#pwd").val();
+            if(pwd=!""&&pwd.length>5&&pwd.length<12){
+                $("#tishi1").html("密码长度正确！");
+                $("#tishi1").css("color","green");
+                $("button").attr("disabled","disabled");
+                $('form').unbind();
+
+            }
+            else{
+                $("#tishi1").html("密码长度在5位以上，且不为空！");
+                $("#tishi1").css("color","red")
+                $("button").attr("disabled","disabled");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+
+        })
+
+    }
+
 
 </script>
+

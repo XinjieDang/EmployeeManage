@@ -50,7 +50,7 @@
                     </p>
                     <p>
                         <label>新密码：</label>
-                        <span class="field"> <input type="password" class="form-control bt" name="password" id="pwd" placeholder="请设置登录密码"></span>
+                        <span class="field"> <input type="password" class="form-control bt" name="password" id="pwd" placeholder="请设置登录密码" onkeyup="validate1()"><span id="tishi1"></span></span>
                     </p>
                     <p>
                         <label>确认新密码：</label>
@@ -89,5 +89,23 @@
             $("button").attr("disabled","disabled");
         }
     }
+    function validate1() {
+        $("#pwd").blur(function (){
+            var pwd=$("#pwd").val();
+            if(pwd=!""&&pwd.length>5&&pwd.length<12){
+                $("#tishi1").html("密码长度正确！");
+                $("#tishi1").css("color","green");
+                $("button").attr("disabled","disabled");
+            }
+            else{
+                $("#tishi1").html("密码长度在5位以上，且不为空！");
+                $("#tishi1").css("color","red")
+                $("button").attr("disabled","disabled");
+            }
+
+        })
+
+    }
+
 
 </script>

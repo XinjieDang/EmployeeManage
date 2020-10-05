@@ -37,13 +37,20 @@
             border-top: 0;
         }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("ul li:eq(1)").addClass("active");
+        });
+    </script>
 </head>
+<%--限制管理员未登录通过地址栏访问--%>
+<jsp:include page="islogin.jsp"></jsp:include>
 
 <body>
 
 <div class="mainwrapper">
 
-    <div class="header" style="background: 	#080808">
+    <div class="header" style="background: #67a2ce">
         <div class="logo">
             <span class="field" style="font-weight: bold;font-size: 20px;color: #EEE9E9">企业员工资料管理系统</span>
         </div>
@@ -71,7 +78,7 @@
         <div class="leftmenu">
             <ul class="nav nav-tabs nav-stacked">
                 <li class="nav-header">Navigation</li>
-                <li><a href="index.jsp"><span class="iconfa-laptop"></span>首页</a></li>
+                <li class="active"><a href="index.jsp"><span class="iconfa-laptop"></span>首页</a></li>
                 <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>用户管理</a>
                     <ul style="display: block">
                         <li><a href="${pageContext.request.contextPath }/userListServlet">用户信息信息列表</a></li>

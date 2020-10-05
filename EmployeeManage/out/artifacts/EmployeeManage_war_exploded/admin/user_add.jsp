@@ -1,11 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ryan
-  Date: 2020/9/22
-  Time: 19:40
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<style>
+    .msg{ font-size: 13px; }
+    .onError{ color: red; }
+    .onSuccess{ color: green; }
+</style>
 <ul class="breadcrumbs">
     <li><a href="../dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
     <li><a href="../forms.html">Forms</a> <span class="separator"></span></li>
@@ -57,7 +57,11 @@
 
                     <p>
                         <label><font color="red">*</font>密码：</label>
-                        <span class="field"><input type="password" name="password" id="lastname2" class="input-xxlarge" /></span>
+                        <span class="field"><input type="password" name="password" id="password" class="input-xxlarge" /></span>
+                    </p>
+                    <p>
+                        <label><font color="red">*</font>确认密码：</label>
+                        <span class="field"><input type="password" class="input-xxlarge" name="pwd" id="pwd1" placeholder="请再次填写密码"><span id="tishi"></span></span>
                     </p>
 
                     <p class="stdformbutton">
@@ -74,6 +78,85 @@
 
     </div><!--maincontentinner-->
 </div><!--maincontent-->
+<script>
+    //表单未有信息时按钮默认不可用
+    $("button").attr("disabled","disabled");
+    //为表单元素添加失去焦点事件
+    $("form :input").blur(function(){
+        var $parent = $(this).parent();
+        $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
+        //验证登录姓名
+        if($(this).is("#loginname")){
+            var nameVal = $.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
+            var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(nameVal == "" || nameVal.length < 6 || regName.test(nameVal)){
+                var errorMsg = " 登录名非空，长度6位以上，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                $('form').bind('submit',function(){
+                    return false;
+                })
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+                $('form').unbind();
+            }
+        }
+        //验证用户名
+        if($(this).is("#username")){
+            var usNameVal = $.trim(this.value);
+            var regusName =/[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(usNameVal == "" || usNameVal.length < 4 || regusName.test(usNameVal)){
+                var errorMsg = " 用户名非空，长度4位以上，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+            }
+        }
+        //验证密码
+        if($(this).is("#password")){
+            var pwdVal = $.trim(this.value);
+            var regPwd =/[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(pwdVal == "" || pwdVal.length < 4 || regPwd.test(pwdVal)){
+                var errorMsg = " 密码非空，长度6位以上，不包含特殊字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+            }
+        }
+        //验证两次输入的密码
+        if($(this).is("#pwd1")){
+            $("button").attr("disabled","disabled");
+            var loginname = $("#loginname").val();
+            var username = $("#username").val();
+            var pwd = $("#password").val();
+            var pwd1 = $("#pwd1").val();
+            <!-- 对比两次输入的密码 -->
+            if(pwd == pwd1&&loginname!=null&&username!=null)
+            {
+                $("#tishi").html("两次密码相同");
+                $("#tishi").css("color","green");
+                $("#xiugai").removeAttr("disabled");
+                $("button").removeAttr("disabled");
+            }
+            else {
+                $("#tishi").html("两次密码不相同");
+                $("#tishi").css("color","red")
+                $("button").attr("disabled","disabled");
+            }
+        }
+    }).keyup(function(){
+        //triggerHandler 防止事件执行完后，浏览器自动为标签获得焦点
+        $(this).triggerHandler("blur");
+    }).focus(function(){
+        $(this).triggerHandler("blur");
+    });
 
-
-
+</script>
