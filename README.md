@@ -6,7 +6,7 @@
 
 #### 技术栈 
 
-* **jsp +servlet +bootstrapt 的curd **
+* **jsp +servlet +bootstrapt 的curd**
 * **数据库：mysql**  
 * **druid 连接池+ jdbc temple**
 
