@@ -104,10 +104,10 @@
 
     <div class="foter footer">
         <div class="footer-left">
-            <span>&copy; 2020. Shamcey Admin Template. </span>
+            <span>&copy; 2020. 员工资料管理. </span>
         </div>
         <div class="footer-right">
-            <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
+            <span><a href=""></a></span>
         </div>
     </div><!--footer-->
 

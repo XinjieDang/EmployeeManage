@@ -15,6 +15,7 @@ public class StaffDaolmlp implements StaffDao {
 
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
+    //查询管理员信息列表
     public List<Staff> findAll() {
         //使用JDBC操作数据库...
         //1.定义sql
@@ -55,6 +56,7 @@ public class StaffDaolmlp implements StaffDao {
     }
 
     @Override
+    //职工登录
     public Staff login(String login_id, String login_pwd) {
         try {
             String sql="select * from staff where loginname=? and password= ?";
@@ -68,6 +70,7 @@ public class StaffDaolmlp implements StaffDao {
     }
 
     @Override
+    //职工登录密码
     public void updatePwd(String pwd,String id) {
         String sql = "update staff set password = ?  where sta_id = ?";
         template.update(sql,pwd,Integer.parseInt(id));
@@ -79,9 +82,10 @@ public class StaffDaolmlp implements StaffDao {
     }
 
     @Override
+    //多条件查询，使用参数拼接sql
     public List<Staff> more_query(Staff staff) {
         //1、给出sql 模板 2、给出参数  3、调用query查询 使用结果集处理器：BeanPropertyRowMapper
-        //1.1给出一个sql 前半句
+        //1.1给出一个sql 前半句 where 1=1 永远为真后面无参数运行也不出错
         StringBuffer sql=new StringBuffer("select *from staff where 1=1");
         //2.1 判断条件 向sql 语句中追加 where 条件
         // 创建一个ArrayList来装参数
@@ -111,6 +115,7 @@ public class StaffDaolmlp implements StaffDao {
     }
 
     @Override
+    //统计职工数
     public int count_staff() {
         String sql="select count(*) from staff";
         return template.queryForObject(sql,Integer.class);

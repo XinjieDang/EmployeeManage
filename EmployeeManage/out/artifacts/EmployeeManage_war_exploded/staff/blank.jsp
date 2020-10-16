@@ -20,8 +20,7 @@
 
     <div class="pageicon"><span class="iconfa-laptop"></span></div>
     <div class="pagetitle">
-        <h5>All Features Summary</h5>
-        <h1>Dashboard</h1>
+        <h1>我的桌面</h1>
     </div>
 </div><!--pageheader-->
 

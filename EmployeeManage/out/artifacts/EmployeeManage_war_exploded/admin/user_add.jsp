@@ -28,8 +28,8 @@
 
     <div class="pageicon"><span class="iconfa-pencil"></span></div>
     <div class="pagetitle">
-        <h5>Forms</h5>
-        <h1>Wizard Forms</h1>
+        <h5></h5>
+        <h1>添加管理员</h1>
     </div>
 </div><!--pageheader-->
 
@@ -89,8 +89,8 @@
         if($(this).is("#loginname")){
             var nameVal = $.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
             var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
-            if(nameVal == "" || nameVal.length < 6 || regName.test(nameVal)){
-                var errorMsg = " 登录名非空，长度6位以上，不包含特殊字符！";
+            if(nameVal == "" || nameVal.length < 5 || regName.test(nameVal)){
+                var errorMsg = " 登录名非空，长度5位以上，不包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
                 $('form').bind('submit',function(){
                     return false;
@@ -107,8 +107,8 @@
         if($(this).is("#username")){
             var usNameVal = $.trim(this.value);
             var regusName =/[~#^$@%&!*()<>:;'"{}【】  ]/;
-            if(usNameVal == "" || usNameVal.length < 4 || regusName.test(usNameVal)){
-                var errorMsg = " 用户名非空，长度4位以上，不包含特殊字符！";
+            if(usNameVal == "" || usNameVal.length < 2 || regusName.test(usNameVal)){
+                var errorMsg = " 用户名非空，长度2位以上，不包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
             }
             else{
@@ -121,8 +121,8 @@
         if($(this).is("#password")){
             var pwdVal = $.trim(this.value);
             var regPwd =/[~#^$@%&!*()<>:;'"{}【】  ]/;
-            if(pwdVal == "" || pwdVal.length < 4 || regPwd.test(pwdVal)){
-                var errorMsg = " 密码非空，长度6位以上，不包含特殊字符！";
+            if(pwdVal == "" || pwdVal.length < 6 ||pwdVal.length>11||regPwd.test(pwdVal)){
+                var errorMsg = " 密码非空，长度6-10位，不包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
             }
             else{

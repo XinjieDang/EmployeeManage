@@ -48,7 +48,7 @@
 
         <!-- START OF DEFAULT WIZARD (INVERSE)-->
         <div class="widgetbox box-inverse">
-            <h4 class="widgettitle">Form Bordered</h4>
+            <h4 class="widgettitle">修改员工信息</h4>
             <div class="widgetcontent nopadding">
                 <form class="stdform stdform2" method="post" action="staffControl?action2=savaStaff&flag=1">
                     <!--  隐藏域 提交id-->

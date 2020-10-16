@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -23,19 +24,6 @@
             //2、设置验证src属性，加上时间戳
             vcode.src = "${pageContext.request.contextPath}/checkCodeServlet?time=" + new Date().getTime();
         }
-    </script>
-    <script>
-        //验证用户名和密码
-        jQuery(document).ready(function () {
-            jQuery('#login').submit(function () {
-                var u = jQuery('#username').val();
-                var p = jQuery('#password').val();
-                if (u == '' && p == '') {
-                    jQuery('.login-alert').fadeIn();
-                    return false;
-                }
-            });
-        });
     </script>
 
 </head>
@@ -92,3 +80,16 @@
 
 </body>
 </html>
+<script>
+    //验证用户名和密码
+    jQuery(document).ready(function () {
+        jQuery('#login').submit(function () {
+            var u = jQuery('#loginname').val();
+            var p = jQuery('#password').val();
+            if (u == '' && p == '') {
+                jQuery('.login-alert').fadeIn();
+                return false;
+            }
+        });
+    });
+</script>

@@ -79,10 +79,10 @@
             <ul class="nav nav-tabs nav-stacked">
                 <li class="nav-header">Navigation</li>
                 <li class="active"><a href="index.jsp"><span class="iconfa-laptop"></span>首页</a></li>
-                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>用户管理</a>
+                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>管理员管理</a>
                     <ul style="display: block">
-                        <li><a href="${pageContext.request.contextPath }/userListServlet">用户信息信息列表</a></li>
-                        <li><a href="Useroperate?action1=addUser">新建用户</a></li>
+                        <li><a href="${pageContext.request.contextPath }/userListServlet">管理员信息信息列表</a></li>
+                        <li><a href="Useroperate?action1=addUser">新建管理员</a></li>
                     </ul>
                 </li>
 
@@ -100,10 +100,10 @@
                     </ul>
                 </li>
 
-                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>职工管理</a>
+                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span>员工管理</a>
                     <ul style="display: block">
-                        <li><a href="staffControl?action1=showlist">职工信息列表</a></li>
-                        <li><a href="staffControl?action1=addStaff">新建职工</a></li>
+                        <li><a href="staffControl?action1=showlist">员工信息列表</a></li>
+                        <li><a href="staffControl?action1=addStaff">新建员工</a></li>
                     </ul>
                 </li>
 
@@ -120,10 +120,10 @@
 
     <div class="foter footer">
         <div class="footer-left">
-            <span>&copy; 2020. Shamcey Admin Template. </span>
+            <span>&copy; 2020.员工资料管理系统. </span>
         </div>
         <div class="footer-right">
-            <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
+            <span> <a href="#"></a></span>
         </div>
     </div><!--footer-->
 

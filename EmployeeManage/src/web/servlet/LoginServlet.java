@@ -37,6 +37,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/login.jsp").forward(request,response);
             return;
         }
+        //判断用户类型
         if("1".equals(role)){
             adminlogin(request,response);
         }else {

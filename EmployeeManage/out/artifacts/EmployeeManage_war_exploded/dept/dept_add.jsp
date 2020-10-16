@@ -43,7 +43,7 @@
 
         <!-- START OF DEFAULT WIZARD (INVERSE)-->
         <div class="widgetbox box-inverse">
-            <h4 class="widgettitle">Form Bordered</h4>
+            <h4 class="widgettitle">新增部门信息</h4>
             <div class="widgetcontent nopadding">
                 <form class="stdform stdform2" method="post" action="deptControl?action2=savaDept">
                     <p>

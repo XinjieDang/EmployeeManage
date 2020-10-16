@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //添加管理员
     public void add(User user) {
         //1.定义sql
         String sql = "insert into user values(null,?,?,?)";
@@ -45,6 +46,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //删除管理员
     public void delete(int id) {
         String sql = "delete from user where id=?";
         //2.执行sql
@@ -53,12 +55,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //通过Id 查询
     public User findById(int id) {
         String sql = "select* from user where id=?";
         return template.queryForObject(sql,new BeanPropertyRowMapper<User>(User.class),id);
     }
 
     @Override
+    //更新管理员
     public void update(User user) {
         //定义sql
         String sql = "update user set loginname = ?, username = ? where id = ?";
@@ -67,6 +71,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //管理员名字模糊查询
     public List<User> findByname(String username) {
         String sql= "select * from user where username like \"%\"? \"%\"";
         List<User> user=template.query(sql,new BeanPropertyRowMapper<User>(User.class),username);
@@ -74,12 +79,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //管理员计数
     public int count() {
         String sql="select count(*) from user";
         return template.queryForObject(sql,Integer.class);
     }
 
     @Override
+    //管理员修改密码
     public void updatePwd(User user) {
         String sql = "update user set password = ?  where id = ?";
         template.update(sql,user.getPassword(),user.getId());
@@ -87,6 +94,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
+    //统计总数
     public int findTotalCount(Map<String, String[]> condition) {
         return 0;
     }
