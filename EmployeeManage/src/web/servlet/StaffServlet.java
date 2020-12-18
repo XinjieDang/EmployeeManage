@@ -151,6 +151,7 @@ public class StaffServlet extends HttpServlet {
               if("showlist".equals(action)){
                   showList(request,response);
               }else if("addStaff".equals(action)){
+                  //拼接添加员工界面
                   request.setAttribute("mainPage", "staff/staff_add.jsp");
                   List<Department> dept_list=departmentService.findAll();
                   List<Job> job_list=jobService.findAll();
